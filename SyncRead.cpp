@@ -52,7 +52,7 @@ void sync_read(uint8_t id, uint8_t* params, uint8_t nb_params) {
     uint8_t id = servos[servo_id];
     setTX(id);
     // 0xFF 0xFF ID LENGTH INSTRUCTION PARAM... CHECKSUM
-    int checksum = ~((id + 6 + addr + nb_to_read) % 256);
+    int checksum_out = ~((id + 6 + addr + nb_to_read) % 256);
     ax12writeB(0xFF);
     ax12writeB(0xFF);
     ax12writeB(id);
@@ -60,7 +60,7 @@ void sync_read(uint8_t id, uint8_t* params, uint8_t nb_params) {
     ax12writeB(AX_READ_DATA);
     ax12writeB(addr);
     ax12writeB(nb_to_read);
-    ax12writeB(checksum);
+    ax12writeB(checksum_out);
 
     setRX(id);
     if (ax12ReadPacket(nb_to_read + 6) > 0) {

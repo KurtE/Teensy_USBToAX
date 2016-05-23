@@ -12,7 +12,7 @@
 #define HWSERIAL Serial1
 //#define DBGSerial Serial
 
-#define PCSerial_TXPIN    8       // hack when we turn off TX pin turns to normal IO, try to set high...
+#define HWSerial_TXPIN    8       // hack when we turn off TX pin turns to normal IO, try to set high...
 #define PCSerial Serial   // Default to USB
 #define PCSerial_USB    // Is the PCSerial going to USB?
 #define SERVO_DIRECTION_PIN -1

@@ -60,8 +60,8 @@ void setup()
 #endif  
 
   // Hack define which
-#ifdef PCSerial_TXPIN
-  pinMode(PCSerial_TXPIN, INPUT_PULLUP);
+#ifdef HWSerial_TXPIN
+  pinMode(HWSerial_TXPIN, INPUT_PULLUP);
 #endif
   PCSerial.begin(baud);	// USB, communication to PC or Mac
   ax12Init(1000000, &HWSERIAL, SERVO_DIRECTION_PIN);
