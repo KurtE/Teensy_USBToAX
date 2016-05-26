@@ -63,7 +63,7 @@ bool ProcessInputFromUSB(void)
   while ((ch = PCSerial.read()) != -1)
   {
     we_did_something = true;
-    digitalWrite(LED_PIN, digitalRead(LED_PIN)? LOW : HIGH);
+    digitalWriteFast(LED_PIN, digitalReadFast(LED_PIN)? LOW : HIGH);
     last_message_time = micros();
     switch (ax_state) {
       case AX_SEARCH_FIRST_FF:
@@ -211,7 +211,13 @@ bool ProcessInputFromUSB(void)
 void FlushUSBInputQueue(void)
 {
   // Lets use internal Teensy function... 
+#if defined(TEENSYDUINO)
   //usb_serial_flush_input();
   Serial.clear();
+#else
+  int ch;
+  while (Serial.read() != -1)
+    ;
+#endif
 }  
 

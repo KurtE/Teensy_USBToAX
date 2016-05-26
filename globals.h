@@ -33,10 +33,10 @@ extern uint8_t g_abToUSBCnt;
 #define DEBUG_PIN_AX_INPUT            A3
 #define DEBUG_PIN_BACKGROUND          A4
 
-//#define USE_DEBUG_IOPINS
+#define USE_DEBUG_IOPINS
 #ifdef USE_DEBUG_IOPINS
-#define debug_digitalWrite(pin, state)  digitalWrite((pin), (state))
-#define debug_digitalToggle(pin)  digitalWrite((pin), !digitalRead((pin)))
+#define debug_digitalWrite(pin, state)  digitalWriteFast((pin), (state))
+#define debug_digitalToggle(pin)  digitalWriteFast((pin), !digitalReadFast((pin)))
 #else
 #define debug_digitalWrite(pin, state)  
 #define debug_digitalToggle(pin)  
